@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Horizon Global | Building the Future of Humanity</title>
+    <meta name="description" content="Horizon Global is a multinational conglomerate pioneering renewable energy (IREO), entertainment (Aura, MoonLight), and next-gen technology (Dev.Ryzn, Net/Orion.it).">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-corp: #020617; /* Slate 950 */
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-corp);
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Conglomerate Gradient Accents */
+        .text-gradient-gold { background-image: linear-gradient(135deg, #fbbf24, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-green { background-image: linear-gradient(135deg, #34d399, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-cyan { background-image: linear-gradient(135deg, #22d3ee, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s ease; }
+        .dropdown-active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        /* Accordion FAQ */
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.active .faq-content { max-height: 500px; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+
+        /* Mobile Menu */
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.3s ease; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 100vh; opacity: 1; padding-bottom: 2rem; }
+
+        .hero-bg {
+            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-slate-700 selection:text-white">
+
+    <nav class="fixed w-full z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-slate-200 to-slate-500 flex items-center justify-center">
+                    <span class="text-[#020617] font-black text-xl tracking-tighter">H</span>
+                </div>
+                <span class="text-xl font-bold tracking-widest uppercase">Horizon <span class="text-slate-500 font-light">Global</span></span>
+            </div>
+            
+            <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400 tracking-wide uppercase">
+                <a href="#divisions" class="hover:text-white transition" data-i18n="nav_div">Divisions</a>
+                <a href="#operations" class="hover:text-white transition" data-i18n="nav_ops">Operations</a>
+                <a href="#vision" class="hover:text-white transition" data-i18n="nav_vision">Vision 2030</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="relative" id="lang-dropdown-wrapper">
+                    <button onclick="toggleLangMenu()" class="flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white bg-white/5 border border-white/10 px-3 py-2 rounded-md">
+                        <i data-lucide="globe" class="w-4 h-4"></i> <span id="current-lang-desktop">EN</span>
+                    </button>
+                    <div class="dropdown-menu absolute right-0 mt-2 w-40 bg-[#0f172a] border border-white/10 rounded-lg shadow-2xl py-1 z-50">
+                        <button onclick="setLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">English</button>
+                        <button onclick="setLang('it')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">Italiano</button>
+                        <button onclick="setLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">Español</button>
+                        <button onclick="setLang('de')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">Deutsch</button>
+                        <button onclick="setLang('ro')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">Română</button>
+                        <button onclick="setLang('ar')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">العربية</button>
+                        <button onclick="setLang('ru')" class="w-full text-left px-4 py-2 text-sm hover:bg-white/5">Русский</button>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 text-white">
+                    <i id="icon-menu" data-lucide="menu" class="w-6 h-6"></i>
+                    <i id="icon-close" data-lucide="x" class="w-6 h-6 hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="lg:hidden bg-[#020617] border-b border-white/10 flex flex-col px-6 pt-4">
+            <div class="flex flex-col gap-6 text-lg font-bold mb-8 uppercase tracking-wider text-slate-300">
+                <a href="#divisions" onclick="toggleMobileMenu()" data-i18n="nav_div">Divisions</a>
+                <a href="#operations" onclick="toggleMobileMenu()" data-i18n="nav_ops">Operations</a>
+                <a href="#vision" onclick="toggleMobileMenu()" data-i18n="nav_vision">Vision 2030</a>
+                <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-40 pb-24 md:pt-52 md:pb-32 px-4 md:px-6 hero-bg border-b border-white/5">
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/50 border border-slate-700 text-xs font-bold text-slate-300 uppercase tracking-widest mb-8">
+                <i data-lucide="building-2" class="w-3.5 h-3.5"></i> <span data-i18n="hero_badge">Multinational Conglomerate</span>
+            </div>
+            <h1 class="text-4xl md:text-7xl font-black mb-6 tracking-tight leading-tight text-white" data-i18n="hero_title">
+                Engineering the <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">Future of Humanity.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed" data-i18n="hero_desc">
+                From renewable energy networks and advanced telecommunications to immersive entertainment and global infrastructure. Horizon Global is the diversified backbone of tomorrow's society.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mt-12 opacity-60 grayscale">
+                <span class="text-xl font-bold tracking-widest uppercase flex items-center gap-2"><i data-lucide="zap"></i> IREO</span>
+                <span class="text-xl font-bold tracking-widest uppercase flex items-center gap-2"><i data-lucide="music"></i> Aura</span>
+                <span class="text-xl font-bold tracking-widest uppercase flex items-center gap-2"><i data-lucide="film"></i> MoonLight</span>
+                <span class="text-xl font-bold tracking-widest uppercase flex items-center gap-2"><i data-lucide="code"></i> Dev.Ryzn</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="operations" class="py-12 bg-slate-900/50 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+            <div>
+                <p class="text-3xl md:text-4xl font-black text-white mb-1">5+</p>
+                <p class="text-xs text-slate-400 uppercase tracking-wider font-bold" data-i18n="stat_1">Core Industries</p>
+            </div>
+            <div>
+                <p class="text-3xl md:text-4xl font-black text-white mb-1">22</p>
+                <p class="text-xs text-slate-400 uppercase tracking-wider font-bold" data-i18n="stat_2">Operating Countries</p>
+            </div>
+            <div>
+                <p class="text-3xl md:text-4xl font-black text-white mb-1">100%</p>
+                <p class="text-xs text-slate-400 uppercase tracking-wider font-bold" data-i18n="stat_3">Green Transition Goal</p>
+            </div>
+            <div>
+                <p class="text-3xl md:text-4xl font-black text-white mb-1">8M+</p>
+                <p class="text-xs text-slate-400 uppercase tracking-wider font-bold" data-i18n="stat_4">Digital Users</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="divisions" class="py-24 px-4 md:px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-black mb-4" data-i18n="div_title">Our Divisions.</h2>
+                    <p class="text-slate-400 max-w-xl" data-i18n="div_desc">A diversified portfolio driving sustainable growth, digital innovation, and cultural impact across the globe.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-600/10 blur-[60px] rounded-full pointer-events-none transition group-hover:bg-emerald-600/20"></div>
+                    <div class="flex justify-between items-start mb-12 relative z-10">
+                        <div class="w-14 h-14 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400">
+                            <i data-lucide="leaf" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full">Energy & Resources</span>
+                    </div>
+                    <h3 class="text-2xl font-black mb-3 relative z-10">IREO</h3>
+                    <p class="text-[10px] text-slate-500 font-mono mb-4 relative z-10">International Renewable Energy Organization</p>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6 relative z-10" data-i18n="ireo_desc">
+                        The backbone of our utility operations. IREO provides 100% green electricity, clean water management, and sustainable methane distribution. Currently dominating the Eastern European grid, with active expansion infrastructure being laid down for Central and Western Europe by 2027.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-violet-600/10 blur-[60px] rounded-full pointer-events-none transition group-hover:bg-violet-600/20"></div>
+                    <div class="flex justify-between items-start mb-12 relative z-10">
+                        <div class="w-14 h-14 bg-violet-500/10 border border-violet-500/20 rounded-xl flex items-center justify-center text-violet-400">
+                            <i data-lucide="music-4" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-violet-400 border border-violet-500/30 px-3 py-1 rounded-full">Entertainment</span>
+                    </div>
+                    <h3 class="text-2xl font-black mb-3 relative z-10">Aura Ecosystem</h3>
+                    <p class="text-[10px] text-slate-500 font-mono mb-4 relative z-10">Powered by Ryzn Music Group</p>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6 relative z-10" data-i18n="aura_desc">
+                        Aura is the next-generation immersive music streaming platform. Connected directly to our internal division, <strong>Ryzn Music Group</strong>, it serves as a complete B2B/B2C ecosystem where artists sign digital distribution contracts, manage global royalties, and deliver 360° audio experiences to millions of listeners.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-600/10 blur-[60px] rounded-full pointer-events-none transition group-hover:bg-cyan-600/20"></div>
+                    <div class="flex justify-between items-start mb-8 relative z-10">
+                        <div class="w-14 h-14 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400">
+                            <i data-lucide="cpu" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 border border-cyan-500/30 px-3 py-1 rounded-full">Tech & Telecom</span>
+                    </div>
+                    <div class="space-y-6 relative z-10">
+                        <div>
+                            <h3 class="text-xl font-black mb-1">Dev.Ryzn</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed" data-i18n="dev_desc">Horizon's internal software development studio. Dev.Ryzn engineers our proprietary algorithms, cloud infrastructure, and AI-driven solutions across all conglomerate sectors.</p>
+                        </div>
+                        <div class="h-px bg-white/10 w-full"></div>
+                        <div>
+                            <h3 class="text-xl font-black mb-1">Net/Orion.it</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed" data-i18n="net_desc">Advanced telecommunications provider. Laying down high-speed fiber optics and maintaining global server nodes to ensure our digital platforms run with zero latency.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border-amber-500/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-black/80 to-[#1a0f00] z-0"></div>
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-amber-600/10 blur-[60px] rounded-full pointer-events-none transition group-hover:bg-amber-600/20 z-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center text-amber-400">
+                                <i data-lucide="clapperboard" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Production Announcement</span>
+                        </div>
+                        
+                        <h3 class="text-2xl font-black mb-1">MoonLight Production</h3>
+                        <p class="text-[10px] text-amber-500/70 font-mono mb-6">Horizon Cinematic Division</p>
+                        
+                        <div class="bg-black/50 border border-white/5 p-5 rounded-xl backdrop-blur-md">
+                            <h4 class="text-xl font-black text-white mb-2 uppercase tracking-widest text-gradient-gold">"The Island" (L'Isola)</h4>
+                            <p class="text-xs text-slate-400 uppercase tracking-widest mb-4 font-bold">In Pre-Production</p>
+                            <p class="text-sm text-slate-300 leading-relaxed italic" data-i18n="movie_desc">
+                                "MoonLight Production is proud to announce its most ambitious investigative thriller to date. Based on the chilling reality of the unsealed Epstein files and authentic accounts, 'The Island' is a rigorous, high-tension cinematic exploration of power, secrecy, and the pursuit of justice. Coming to global theaters next year."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="py-24 px-4 md:px-6 bg-slate-900 border-y border-white/5 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-5xl bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black mb-4" data-i18n="vision_title">Vision 2030: Building Tomorrow.</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="vision_desc">Horizon Global is not just participating in the future; we are laying its foundations. Our upcoming mega-projects will redefine human connectivity and urban living.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <div class="w-12 h-12 bg-orange-500/10 border border-orange-500/20 rounded-xl flex items-center justify-center text-orange-400 mb-6">
+                        <i data-lucide="earth" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white" data-i18n="africa_title">Project: Africa Connect</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4" data-i18n="africa_desc">
+                        A monumental infrastructure initiative aimed at the African continent. Horizon, through IREO and Net/Orion.it, is planning the construction of unified grids providing stable internet access, clean drinking water plants, and decentralized renewable energy micro-grids to emerging nations.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-medium">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Water purification logistics</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Solar-powered telecom towers</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 mb-6">
+                        <i data-lucide="building" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white" data-i18n="city_title">Smart City Horizon (City 2.0)</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4" data-i18n="city_desc">
+                        The ultimate evolution of urban life. Dev.Ryzn is developing the AI core for "City 2.0"—a fully integrated software ecosystem that synchronizes traffic, energy consumption (via IREO), and public services. We are partnering with municipalities to retrofit existing cities into smart hubs of efficiency.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-medium">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> AI-driven traffic grid</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> Automated utility routing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 px-4 md:px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4">Frequently Asked Questions</h2>
+                <p class="text-slate-400">Clarity on our global operations.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-bold text-white text-sm md:text-base" data-i18n="faq_1_q">Is Ryzn Music Group an independent company?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-black/20">
+                        <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed" data-i18n="faq_1_a">No, Ryzn Music Group is an internal, dedicated division of Horizon Global, operating seamlessly with our Aura ecosystem to manage artists, royalties, and digital rights.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-bold text-white text-sm md:text-base" data-i18n="faq_2_q">Where does IREO currently operate?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-black/20">
+                        <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed" data-i18n="faq_2_a">IREO currently manages utility grids (energy, water, methane) primarily in Eastern Europe. Strategic infrastructure is being deployed to expand into Central and Western Europe.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-bold text-white text-sm md:text-base" data-i18n="faq_3_q">When will MoonLight's "The Island" be released?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-black/20">
+                        <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed" data-i18n="faq_3_a">The film is currently in advanced pre-production. Official trailers and global theatrical release dates will be announced by the end of the fiscal year.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#01030a] border-t border-white/10 pt-20 pb-10 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+            
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-6 h-6 rounded bg-slate-300 flex items-center justify-center">
+                        <span class="text-[#020617] font-black text-xs">H</span>
+                    </div>
+                    <span class="text-lg font-bold tracking-widest uppercase">Horizon <span class="text-slate-500 font-light">Global</span></span>
+                </div>
+                <p class="text-xs text-slate-500 max-w-sm leading-relaxed mb-6" data-i18n="footer_about">
+                    A multinational conglomerate driving human progress through sustainable utilities, cutting-edge software, telecommunications, and high-fidelity entertainment.
+                </p>
+                <div class="flex gap-4 opacity-50">
+                    <i data-lucide="linkedin" class="w-5 h-5 hover:text-white cursor-pointer transition"></i>
+                    <i data-lucide="twitter" class="w-5 h-5 hover:text-white cursor-pointer transition"></i>
+                    <i data-lucide="globe" class="w-5 h-5 hover:text-white cursor-pointer transition"></i>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-xs" data-i18n="footer_div">Subsidiaries</h4>
+                <ul class="space-y-3 text-xs text-slate-400 font-medium">
+                    <li><span class="hover:text-white transition cursor-pointer">IREO (Energy)</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">Aura Ecosystem</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">Ryzn Music Group</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">MoonLight Production</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">Dev.Ryzn</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">Net/Orion.it</span></li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-2">
+                <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-xs" data-i18n="footer_legal">Terms & Conditions</h4>
+                <div class="text-xs text-slate-500 leading-relaxed space-y-4 text-justify pr-4 h-32 overflow-y-auto custom-scrollbar border border-white/5 p-4 rounded-lg bg-white/5">
+                    <p><strong>1. Corporate Structure:</strong> Horizon Global operates as a parent conglomerate. Subsidiaries like IREO, Ryzn Music Group, and Dev.Ryzn are wholly owned divisions.</p>
+                    <p><strong>2. Data Privacy (GDPR):</strong> All operations within EU territories comply strictly with GDPR regulations. Data collected by Net/Orion.it and Aura is encrypted via AES-256 protocols managed by Dev.Ryzn.</p>
+                    <p><strong>3. Energy Operations:</strong> IREO utility services are subject to the local regulatory frameworks of operating nations. Service uptime guarantees (99.9%) apply to existing grids.</p>
+                    <p><strong>4. Intellectual Property:</strong> All cinematic productions by MoonLight and software architectures by Dev.Ryzn are exclusive trademarks and properties of Horizon Global.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] text-slate-600 uppercase tracking-widest">&copy; 2024-2030 Horizon Global. All Rights Reserved.</p>
+            <div class="flex gap-4 text-[10px] text-slate-600 uppercase tracking-widest font-bold">
+                <span class="hover:text-white transition cursor-pointer">Privacy Policy</span>
+                <span class="hover:text-white transition cursor-pointer">Cookie Policy</span>
+                <span class="hover:text-white transition cursor-pointer">Investor Relations</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // FAQ Toggle Logic
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all others
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+            
+            // Open clicked if it wasn't active
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            
+            menu.classList.toggle('open');
+            
+            if(menu.classList.contains('open')) {
+                iconMenu.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        // Language Dropdown Logic
+        const dropdownWrapper = document.getElementById('lang-dropdown-wrapper');
+        function toggleLangMenu() {
+            dropdownWrapper.classList.toggle('dropdown-active');
+        }
+        document.addEventListener('click', (e) => {
+            if (!dropdownWrapper.contains(e.target)) {
+                dropdownWrapper.classList.remove('dropdown-active');
+            }
+        });
+
+        // i18n Dictionary
+        const translations = {
+            en: {
+                nav_div: "Divisions", nav_ops: "Operations", nav_vision: "Vision 2030",
+                hero_badge: "Multinational Conglomerate",
+                hero_title: "Engineering the <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500'>Future of Humanity.</span>",
+                hero_desc: "From renewable energy networks and advanced telecommunications to immersive entertainment and global infrastructure. Horizon Global is the diversified backbone of tomorrow's society.",
+                stat_1: "Core Industries", stat_2: "Operating Countries", stat_3: "Green Transition Goal", stat_4: "Digital Users",
+                div_title: "Our Divisions.", div_desc: "A diversified portfolio driving sustainable growth, digital innovation, and cultural impact across the globe.",
+                ireo_desc: "The backbone of our utility operations. IREO provides 100% green electricity, clean water management, and sustainable methane distribution. Currently dominating the Eastern European grid, with active expansion infrastructure being laid down for Central and Western Europe by 2027.",
+                aura_desc: "Aura is the next-generation immersive music streaming platform. Connected directly to our internal division, <strong>Ryzn Music Group</strong>, it serves as a complete ecosystem where artists sign contracts and deliver 360° audio to millions.",
+                dev_desc: "Horizon's internal software development studio. Dev.Ryzn engineers our proprietary algorithms, cloud infrastructure, and AI-driven solutions across all conglomerate sectors.",
+                net_desc: "Advanced telecommunications provider. Laying down high-speed fiber optics and maintaining global server nodes to ensure our digital platforms run with zero latency.",
+                movie_desc: "\"MoonLight Production is proud to announce its most ambitious investigative thriller to date. Based on the chilling reality of the unsealed Epstein files and authentic accounts, 'The Island' is a rigorous, high-tension cinematic exploration of power, secrecy, and the pursuit of justice. Coming to global theaters next year.\"",
+                vision_title: "Vision 2030: Building Tomorrow.", vision_desc: "Horizon Global is not just participating in the future; we are laying its foundations. Our upcoming mega-projects will redefine human connectivity and urban living.",
+                africa_title: "Project: Africa Connect", africa_desc: "A monumental infrastructure initiative aimed at the African continent. Horizon, through IREO and Net/Orion.it, is planning the construction of unified grids providing stable internet access, clean drinking water plants, and decentralized renewable energy micro-grids to emerging nations.",
+                city_title: "Smart City Horizon (City 2.0)", city_desc: "The ultimate evolution of urban life. Dev.Ryzn is developing the AI core for 'City 2.0'—a fully integrated software ecosystem that synchronizes traffic, energy consumption (via IREO), and public services.",
+                faq_1_q: "Is Ryzn Music Group an independent company?", faq_1_a: "No, Ryzn Music Group is an internal, dedicated division of Horizon Global, operating seamlessly with our Aura ecosystem.",
+                faq_2_q: "Where does IREO currently operate?", faq_2_a: "IREO currently manages utility grids primarily in Eastern Europe. Strategic infrastructure is being deployed to expand into Central and Western Europe.",
+                faq_3_q: "When will MoonLight's 'The Island' be released?", faq_3_a: "The film is currently in advanced pre-production. Official trailers and global theatrical release dates will be announced by the end of the fiscal year.",
+                footer_about: "A multinational conglomerate driving human progress through sustainable utilities, cutting-edge software, telecommunications, and high-fidelity entertainment.",
+                footer_div: "Subsidiaries", footer_legal: "Terms & Conditions"
+            },
+            it: {
+                nav_div: "Divisioni", nav_ops: "Operazioni", nav_vision: "Visione 2030",
+                hero_badge: "Conglomerato Multinazionale",
+                hero_title: "Ingegnerizziamo il <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500'>Futuro dell'Umanità.</span>",
+                hero_desc: "Dalle reti di energia rinnovabile alle telecomunicazioni avanzate, dall'intrattenimento immersivo alle infrastrutture globali. Horizon Global è la spina dorsale della società di domani.",
+                stat_1: "Industrie Chiave", stat_2: "Paesi Operativi", stat_3: "Obiettivo Transizione Verde", stat_4: "Utenti Digitali",
+                div_title: "Le Nostre Divisioni.", div_desc: "Un portafoglio diversificato che guida la crescita sostenibile, l'innovazione digitale e l'impatto culturale in tutto il mondo.",
+                ireo_desc: "La spina dorsale delle nostre utility. IREO fornisce elettricità 100% verde, gestione dell'acqua pulita e distribuzione sostenibile di metano. Attualmente leader in Est Europa, con espansione verso il Centro e Ovest Europa prevista entro il 2027.",
+                aura_desc: "Aura è la piattaforma di streaming musicale immersivo di nuova generazione. Connessa direttamente alla nostra divisione interna, <strong>Ryzn Music Group</strong>, funge da ecosistema completo per artisti e ascoltatori.",
+                dev_desc: "Lo studio di sviluppo software interno di Horizon. Dev.Ryzn ingegnerizza i nostri algoritmi proprietari, infrastrutture cloud e soluzioni IA.",
+                net_desc: "Fornitore di telecomunicazioni avanzate. Posa di fibra ottica ad alta velocità e manutenzione di nodi server globali (Net/Orion.it) per garantire latenza zero.",
+                movie_desc: "\"MoonLight Production è orgogliosa di annunciare il suo thriller investigativo più ambizioso. Basato sulla cruda realtà dei file desecretati di Epstein e resoconti autentici, 'L'Isola' è una rigorosa esplorazione cinematografica di potere, segretezza e giustizia. Nei cinema di tutto il mondo l'anno prossimo.\"",
+                vision_title: "Visione 2030: Costruire il Domani.", vision_desc: "Horizon Global non partecipa solo al futuro; ne getta le fondamenta. I nostri mega-progetti ridefiniranno la connettività umana.",
+                africa_title: "Progetto: Africa Connect", africa_desc: "Un'iniziativa infrastrutturale monumentale per il continente africano. Tramite IREO e Net/Orion.it, stiamo pianificando reti unificate per internet stabile, impianti idrici e micro-reti energetiche rinnovabili.",
+                city_title: "Smart City Horizon (City 2.0)", city_desc: "L'evoluzione definitiva della vita urbana. Dev.Ryzn sta sviluppando il nucleo IA per 'City 2.0', sincronizzando traffico, energia (tramite IREO) e servizi pubblici.",
+                faq_1_q: "Ryzn Music Group è un'azienda indipendente?", faq_1_a: "No, Ryzn Music Group è una divisione interna e dedicata di Horizon Global.",
+                faq_2_q: "Dove opera attualmente IREO?", faq_2_a: "IREO gestisce le reti in Europa Orientale, con infrastrutture in sviluppo per l'Europa Centrale e Occidentale.",
+                faq_3_q: "Quando uscirà 'L'Isola' di MoonLight?", faq_3_a: "Il film è in pre-produzione avanzata. Le date di uscita saranno annunciate entro fine anno fiscale.",
+                footer_about: "Un conglomerato multinazionale che guida il progresso umano tramite utility sostenibili, software avanzato, telecomunicazioni e intrattenimento.",
+                footer_div: "Controllate", footer_legal: "Termini e Condizioni"
+            },
+            // Altre lingue avrebbero la traduzione mappata qui, uso un fallback in INGLESE come richiesto in precedenza per brevità
+            es: { nav_div: "Divisiones", nav_ops: "Operaciones", nav_vision: "Visión 2030", hero_badge: "Conglomerado Multinacional", hero_title: "Construyendo el <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500'>Futuro de la Humanidad.</span>" },
+            de: { nav_div: "Unternehmensbereiche", nav_ops: "Betrieb", nav_vision: "Vision 2030", hero_badge: "Multinationales Konglomerat" },
+            ro: { nav_div: "Divizii", nav_ops: "Operațiuni", nav_vision: "Viziune 2030", hero_badge: "Conglomerat Multinațional", hero_title: "Proiectând <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500'>Viitorul Omenirii.</span>" },
+            ar: { nav_div: "الأقسام", nav_ops: "العمليات", nav_vision: "رؤية 2030", hero_badge: "تكتل متعدد الجنسيات" },
+            ru: { nav_div: "Подразделения", nav_ops: "Операции", nav_vision: "Видение 2030", hero_badge: "Многонациональный конгломерат" }
+        };
+
+        function setLang(langCode) {
+            document.getElementById('current-lang-desktop').innerText = langCode.toUpperCase();
+            document.documentElement.lang = langCode;
+            dropdownWrapper.classList.remove('dropdown-active');
+
+            const dict = translations[langCode] || translations['en'];
+            const fallbackDict = translations['en'];
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) {
+                    el.innerHTML = dict[key];
+                } else if(fallbackDict[key]) {
+                    el.innerHTML = fallbackDict[key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
