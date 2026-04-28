@@ -65,12 +65,16 @@
         .ticker-item { display: inline-block; padding: 0 2rem; font-family: monospace; font-size: 0.75rem; color: #94a3b8; }
         .ticker-pos { color: #22c55e; } 
         
-        /* Animazioni allo scroll */
         .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
     </style>
 </head>
 <body class="antialiased selection:bg-slate-700 selection:text-white">
@@ -159,17 +163,13 @@
 
     <section id="about" class="py-20 px-4 md:px-6 bg-slate-900/30">
         <div class="max-w-3xl mx-auto text-center flex flex-col items-center reveal-on-scroll">
-            
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white" data-i18n="about_title">A focus on sustainable growth.</h2>
-            
             <p class="text-slate-400 mb-6 leading-relaxed text-base font-light" data-i18n="about_desc1">
                 Horizon Global operates across utility, media, and technology sectors. Our approach is grounded in steady, responsible development, prioritizing reliability and positive community impact over rapid expansion.
             </p>
-            
             <p class="text-slate-400 mb-10 leading-relaxed text-base font-light" data-i18n="about_desc2">
                 We believe in building systems that serve a practical purpose. Whether it's helping to manage regional energy grids or developing user-friendly software, our goal is to provide consistent, high-quality infrastructure for everyday needs.
             </p>
-            
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 border-t border-white/10 pt-8 w-full">
                 <div class="text-center">
                     <div class="flex items-center justify-center gap-2 text-emerald-400 mb-2">
@@ -185,7 +185,6 @@
                     <p class="text-xs text-slate-400 font-medium tracking-wide" data-i18n="about_stat2">Community Centric</p>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -197,7 +196,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
                 <div class="glass-card p-8 rounded-2xl relative overflow-hidden reveal-on-scroll delay-100">
                     <div class="flex items-center gap-4 mb-6 relative z-10">
                         <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400">
@@ -257,7 +255,6 @@
                         Dev.Ryzn is our core software team. They build the applications that manage our utility grids and power our digital platforms, focusing on security, stability, and practical AI tools to improve urban logistics.
                     </p>
                 </div>
-
             </div>
 
             <div class="mt-6 glass-card p-8 rounded-2xl relative overflow-hidden reveal-on-scroll">
@@ -295,7 +292,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -425,7 +421,7 @@
                     </div>
                 </div>
                 <p class="text-sm text-slate-400 max-w-sm leading-relaxed mb-6" data-i18n="footer_about">
-                    Concentrati sull'offerta di tecnologie affidabili, soluzioni energetiche sostenibili e media accessibili.
+                    Focused on delivering reliable technology, sustainable energy solutions, and accessible media.
                 </p>
                 <div class="mt-4 pt-4 border-t border-white/5 inline-block">
                     <p class="text-xs text-slate-500 font-medium uppercase tracking-widest leading-relaxed">
@@ -437,23 +433,23 @@
             </div>
 
             <div>
-                <h4 class="font-semibold text-white mb-4 tracking-wide text-xs uppercase" data-i18n="footer_div">I Nostri Servizi</h4>
+                <h4 class="font-semibold text-white mb-4 tracking-wide text-xs uppercase" data-i18n="footer_div">Our Services</h4>
                 <ul class="space-y-3 text-sm text-slate-400">
-                    <li><a href="#divisions" class="hover:text-white transition cursor-pointer">IREO Utilities</a></li>
-                    <li><a href="#divisions" class="hover:text-white transition cursor-pointer">Aura Platform</a></li>
-                    <li><a href="#divisions" class="hover:text-white transition cursor-pointer">MoonLight</a></li>
-                    <li><a href="#divisions" class="hover:text-white transition cursor-pointer">Dev.Ryzn</a></li>
-                    <li><a href="#divisions" class="hover:text-white transition cursor-pointer">Net-Orion</a></li>
+                    <li><button onclick="openModal('ireo')" class="hover:text-white transition cursor-pointer text-left">IREO Utilities</button></li>
+                    <li><button onclick="openModal('aura')" class="hover:text-white transition cursor-pointer text-left">Aura Platform</button></li>
+                    <li><button onclick="openModal('moonlight')" class="hover:text-white transition cursor-pointer text-left">MoonLight</button></li>
+                    <li><button onclick="openModal('devryzn')" class="hover:text-white transition cursor-pointer text-left">Dev.Ryzn</button></li>
+                    <li><button onclick="openModal('netorion')" class="hover:text-white transition cursor-pointer text-left">Net-Orion</button></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-semibold text-white mb-4 tracking-wide text-xs uppercase" data-i18n="footer_legal">Informazioni Generali</h4>
+                <h4 class="font-semibold text-white mb-4 tracking-wide text-xs uppercase" data-i18n="footer_legal">General Info</h4>
                 <ul class="space-y-3 text-sm text-slate-400">
-                    <li><a href="#" class="hover:text-white transition cursor-pointer">Privacy Policy (GDPR)</a></li>
-                    <li><a href="#" class="hover:text-white transition cursor-pointer">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-white transition cursor-pointer">Accessibility</a></li>
-                    <li><a href="#" class="hover:text-white transition cursor-pointer">Contact Support</a></li>
+                    <li><button onclick="openModal('privacy')" class="hover:text-white transition cursor-pointer text-left" data-i18n="btn_privacy">Privacy Policy</button></li>
+                    <li><button onclick="openModal('terms')" class="hover:text-white transition cursor-pointer text-left" data-i18n="btn_terms">Terms of Service</button></li>
+                    <li><button onclick="openModal('accessibility')" class="hover:text-white transition cursor-pointer text-left" data-i18n="btn_access">Accessibility</button></li>
+                    <li><button onclick="openModal('contact')" class="hover:text-white transition cursor-pointer text-left" data-i18n="btn_contact">Contact Support</button></li>
                 </ul>
             </div>
 
@@ -463,6 +459,19 @@
             <p class="text-xs text-slate-600">&copy; 2024-2030 Horizon Global. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <div id="global-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0f172a] border border-white/10 rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl transform scale-95 transition-transform duration-300" id="global-modal-content">
+            <div class="flex justify-between items-center p-6 border-b border-white/10">
+                <h3 class="text-xl font-bold text-white flex items-center gap-3" id="modal-title">Title</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition focus:outline-none bg-white/5 hover:bg-white/10 p-2 rounded-lg">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto custom-scrollbar text-sm text-slate-300 space-y-4 leading-relaxed" id="modal-body">
+                </div>
+        </div>
+    </div>
 
     <script>
         // Init Icons
@@ -498,7 +507,7 @@
             if (!dropdownWrapper.contains(e.target)) dropdownWrapper.classList.remove('dropdown-active');
         });
 
-        // Scroll Animations (Intersection Observer)
+        // Scroll Animations
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -513,15 +522,14 @@
             });
         });
 
-        // Completly translated dictionaries for 6 requested languages
+        // --- FULL TRANSLATIONS OBJECT ---
         const translations = {
             en: {
-                nav_about: "About Us", nav_div: "Services", nav_presence: "Presence", nav_smart: "Communities", 
+                nav_about: "About Us", nav_div: "Services", nav_presence: "Presence", nav_smart: "Communities",
                 hero_badge: "Technology & Infrastructure", hero_title: "Developing practical <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-400'>solutions for tomorrow.</span>", 
                 hero_desc: "From renewable energy networks and reliable telecommunications to accessible entertainment and software. Horizon Global focuses on delivering quality services that support communities and everyday life.",
                 about_title: "A focus on sustainable growth.", about_desc1: "Horizon Global operates across utility, media, and technology sectors. Our approach is grounded in steady, responsible development, prioritizing reliability and positive community impact over rapid expansion.", about_desc2: "We believe in building systems that serve a practical purpose. Whether it's helping to manage regional energy grids or developing user-friendly software, our goal is to provide consistent, high-quality infrastructure for everyday needs.", 
                 about_stat1: "Focus on Sustainability", about_stat2: "Community Centric",
-                origins_badge: "Our Background", origins_title: "A foundation built on problem-solving.", origins_desc1: "Founded by Sebastian Brotto as a modest tech initiative, Horizon Global began with a simple goal: to improve the efficiency of local data and energy systems. By focusing on practical problem-solving, our early software frameworks gradually expanded into broader utility management.", origins_desc2: "Today, we maintain that same foundational approach. We have grown to encompass multiple disciplines, but our core mission remains unchanged: delivering reliable, accessible services that help communities function smoothly and sustainably.",
                 div_title: "Our Services.", div_desc: "A balanced portfolio focused on renewable energy, digital connectivity, and accessible media experiences.",
                 ireo_desc: "IREO is dedicated to sustainable utility management. We focus on delivering renewable electricity, supporting water purification projects, and maintaining reliable infrastructure for the communities we serve in Europe.",
                 aura_desc: "Aura is our dedicated music and social platform. Created alongside Ryzn Music Group, it aims to connect artists directly with listeners, providing clear audio quality and a straightforward, fair ecosystem for creators.",
@@ -540,7 +548,27 @@
                 faq_1_q: "Is Ryzn Music Group a separate entity?", faq_1_a: "Ryzn Music Group operates as a dedicated internal team within Horizon Global. It works closely with our Aura platform to ensure artists are fairly compensated and rights are managed securely.",
                 faq_2_q: "How do Net-Orion and Dev.Ryzn collaborate?", faq_2_a: "Net-Orion handles our physical infrastructure, like servers and fiber optics. Dev.Ryzn is the software team that builds the applications and operating systems running on that hardware to keep services smooth.",
                 faq_3_q: "Where is IREO currently providing services?", faq_3_a: "IREO primarily focuses on supporting utility grids in various European regions. We are carefully expanding our renewable energy projects to regions where they can provide the most practical benefit.",
-                footer_about: "Focused on delivering reliable technology, sustainable energy solutions, and accessible media.", footer_div: "Our Services", footer_legal: "General Info"
+                footer_about: "Focused on delivering reliable technology, sustainable energy solutions, and accessible media.", footer_div: "Our Services", footer_legal: "General Info",
+                btn_privacy: "Privacy Policy (GDPR)", btn_terms: "Terms of Service", btn_access: "Accessibility", btn_contact: "Contact Support",
+                
+                modal_privacy_title: "Privacy Policy (GDPR)",
+                modal_privacy_body: "<p><strong>1. Data Controller</strong><br>SB GLOBAL HORIZON, Via Domnul Ocesti 4, Stanesti, Giurgiu, operates as the primary data controller for all Horizon Global divisions.</p><p><strong>2. Data Collection & Usage</strong><br>We collect functional telemetry from IREO utility grids and usage analytics from the Aura platform. This data is strictly utilized to maintain network stability and improve service delivery.</p><p><strong>3. User Rights (GDPR)</strong><br>Under European law, you have the right to access, correct, or request the deletion of your personal data.</p><p><strong>4. Security Protocols</strong><br>All sensitive user information is encrypted using AES-256 protocols managed by Dev.Ryzn and hosted securely within Net-Orion's European data centers.</p>",
+                modal_terms_title: "Terms of Service",
+                modal_terms_body: "<p><strong>1. Acceptance of Terms</strong><br>By utilizing any service provided by Horizon Global, you agree to comply with these terms.</p><p><strong>2. Service Reliability</strong><br>We strive to maintain a 99.9% uptime for all utility and digital services. Horizon Global is not liable for temporary outages caused by external infrastructure damage.</p><p><strong>3. Intellectual Property</strong><br>All software algorithms developed by Dev.Ryzn and media produced by MoonLight remain the exclusive intellectual property of Horizon Global.</p>",
+                modal_accessibility_title: "Accessibility Statement",
+                modal_accessibility_body: "<p>Horizon Global is committed to ensuring our digital platforms and physical services are accessible to everyone, including individuals with disabilities.</p><p><strong>Our Efforts:</strong><br>We continuously update our software interfaces to comply with Web Content Accessibility Guidelines (WCAG) 2.1 AA standards.</p>",
+                modal_contact_title: "Contact Support",
+                modal_contact_body: "<p><strong>Corporate Headquarters:</strong><br>SB GLOBAL HORIZON<br>Via Domnul Ocesti 4<br>Stanesti, Giurgiu</p><hr class='border-white/10 my-4'><p><strong>Support Channels:</strong><br>Email: support@horizonglobal.com<br>Phone: +40 (0) 31 400 0000</p>",
+                modal_ireo_title: "<i data-lucide='sun' class='text-emerald-400 w-6 h-6'></i> IREO Utilities",
+                modal_ireo_body: "<p><strong>International Renewable Energy Organization</strong></p><p>IREO manages and distributes renewable energy across multiple European sectors, utilizing advanced smart grids to balance load and reduce waste.</p><ul class='list-disc pl-5 space-y-2 mt-2'><li>Operation of large-scale solar and wind farms.</li><li>Implementation of smart water purification systems.</li></ul>",
+                modal_aura_title: "<i data-lucide='headphones' class='text-violet-400 w-6 h-6'></i> Aura Platform",
+                modal_aura_body: "<p><strong>Next-Generation Media Ecosystem</strong></p><p>Aura is our flagship streaming platform designed to close the gap between creators and listeners. Powered by Dev.Ryzn's audio compression algorithms.</p><ul class='list-disc pl-5 space-y-2 mt-2'><li>Integrated directly with Ryzn Music Group.</li><li>Lossless audio codecs available.</li></ul>",
+                modal_moonlight_title: "<i data-lucide='clapperboard' class='text-amber-400 w-6 h-6'></i> MoonLight Production",
+                modal_moonlight_body: "<p><strong>Cinematic & Creative Division</strong></p><p>MoonLight Production focuses on high-budget, narrative-driven cinema. Our current major project, <em>'The Island'</em>, is an investigative thriller based on real unsealed documents.</p>",
+                modal_devryzn_title: "<i data-lucide='code-2' class='text-cyan-400 w-6 h-6'></i> Dev.Ryzn",
+                modal_devryzn_body: "<p><strong>Horizon Software Engineering</strong></p><p>Dev.Ryzn is the brain behind Horizon Global. Our software elite develops the proprietary algorithms that power every other division.</p><ul class='list-disc pl-5 space-y-2 mt-2'><li><strong>AI & Automation:</strong> Creating adaptive traffic models.</li><li><strong>Cybersecurity:</strong> Implementing military-grade encryption.</li></ul>",
+                modal_netorion_title: "<i data-lucide='wifi' class='text-blue-400 w-6 h-6'></i> Net-Orion",
+                modal_netorion_body: "<p><strong>Global Telecommunications Infrastructure</strong></p><p>Net-Orion manages thousands of kilometers of high-speed fiber optics and transatlantic submarine cables, operating hyper-secure Tier 4 data centers across Europe.</p>"
             },
             it: {
                 nav_about: "Chi Siamo", nav_div: "Servizi", nav_presence: "Presenza", nav_smart: "Comunità",
@@ -548,7 +576,6 @@
                 hero_desc: "Dalle reti di energia rinnovabile alle telecomunicazioni, dall'intrattenimento al software accessibile. Horizon Global si concentra sull'offerta di servizi di qualità che supportano la vita quotidiana.",
                 about_title: "Un approccio basato sulla crescita sostenibile.", about_desc1: "Horizon Global opera nei settori delle utility, dei media e della tecnologia. Il nostro approccio si fonda su uno sviluppo costante e responsabile, privilegiando l'affidabilità all'espansione rapida.", about_desc2: "Crediamo nella costruzione di sistemi che abbiano uno scopo pratico. Che si tratti di gestire reti energetiche regionali o di sviluppare software facili da usare, il nostro obiettivo è fornire un'infrastruttura di alta qualità.",
                 about_stat1: "Focus sulla Sostenibilità", about_stat2: "Centrato sulla Comunità",
-                origins_badge: "Le Nostre Origini", origins_title: "Una fondazione nata per risolvere problemi.", origins_desc1: "Fondata da Sebastian Brotto come modesta iniziativa tecnologica, Horizon ha iniziato con un obiettivo semplice: migliorare l'efficienza dei sistemi locali. Concentrandoci su soluzioni pratiche, ci siamo espansi verso la gestione più ampia delle utility.", origins_desc2: "Oggi manteniamo lo stesso approccio. Siamo cresciuti in diverse discipline, ma la nostra missione principale rimane immutata: fornire servizi affidabili che aiutino le comunità a funzionare in modo sostenibile.",
                 div_title: "I Nostri Servizi.", div_desc: "Un portafoglio equilibrato focalizzato su energie rinnovabili, connettività e media accessibili.",
                 ireo_desc: "IREO si dedica alla gestione sostenibile delle utility. Ci concentriamo sull'energia rinnovabile, su progetti di purificazione dell'acqua e sul mantenimento di infrastrutture affidabili per le comunità che serviamo.",
                 aura_desc: "Aura è la nostra piattaforma musicale. Creata con Ryzn Music Group, mira a connettere gli artisti direttamente con gli ascoltatori, garantendo un'ottima qualità audio e un ecosistema equo per i creatori.",
@@ -567,69 +594,126 @@
                 faq_1_q: "Ryzn Music Group è un'azienda separata?", faq_1_a: "Ryzn opera come un team interno dedicato all'interno di Horizon Global. Lavora a stretto contatto con la nostra piattaforma Aura per garantire che gli artisti vengano compensati equamente.",
                 faq_2_q: "Come collaborano Net-Orion e Dev.Ryzn?", faq_2_a: "Net-Orion gestisce l'infrastruttura fisica (server, fibra). Dev.Ryzn è il team che crea le applicazioni e i sistemi operativi per far funzionare tale hardware in modo fluido.",
                 faq_3_q: "Dove fornisce servizi attualmente IREO?", faq_3_a: "IREO si concentra principalmente sul supporto alle reti in Europa. Stiamo espandendo con cautela i nostri progetti di energia rinnovabile dove possono offrire vantaggi più tangibili.",
-                footer_about: "Concentrati sull'offerta di tecnologie affidabili, soluzioni energetiche sostenibili e media accessibili.", footer_div: "I Nostri Servizi", footer_legal: "Informazioni Generali"
+                footer_about: "Concentrati sull'offerta di tecnologie affidabili, soluzioni energetiche sostenibili e media accessibili.", footer_div: "I Nostri Servizi", footer_legal: "Informazioni Generali",
+                btn_privacy: "Privacy Policy (GDPR)", btn_terms: "Termini di Servizio", btn_access: "Accessibilità", btn_contact: "Contatta il Supporto",
+                
+                modal_privacy_title: "Informativa sulla Privacy (GDPR)",
+                modal_privacy_body: "<p><strong>1. Titolare del Trattamento</strong><br>SB GLOBAL HORIZON, Via Domnul Ocesti 4, Stanesti, Giurgiu, opera come titolare principale del trattamento dei dati per tutte le divisioni Horizon Global.</p><p><strong>2. Raccolta e Uso dei Dati</strong><br>Raccogliamo telemetria funzionale dalle reti IREO e dati analitici dalla piattaforma Aura. Questi dati sono utilizzati strettamente per mantenere la stabilità della rete e migliorare i servizi.</p><p><strong>3. Diritti dell'Utente (GDPR)</strong><br>Ai sensi della legge europea, hai il diritto di accedere, correggere o richiedere la cancellazione dei tuoi dati personali.</p><p><strong>4. Protocolli di Sicurezza</strong><br>Tutte le informazioni sensibili sono crittografate tramite protocolli AES-256 gestiti da Dev.Ryzn e ospitati in modo sicuro nei data center europei di Net-Orion.</p>",
+                modal_terms_title: "Termini di Servizio",
+                modal_terms_body: "<p><strong>1. Accettazione dei Termini</strong><br>Utilizzando qualsiasi servizio fornito da Horizon Global, accetti di rispettare questi termini.</p><p><strong>2. Affidabilità del Servizio</strong><br>Ci impegniamo a mantenere un uptime del 99,9%. Tuttavia, Horizon Global non è responsabile per interruzioni temporanee causate da danni esterni.</p><p><strong>3. Proprietà Intellettuale</strong><br>Tutti i software sviluppati da Dev.Ryzn e le produzioni MoonLight rimangono proprietà intellettuale esclusiva di Horizon Global.</p>",
+                modal_accessibility_title: "Dichiarazione di Accessibilità",
+                modal_accessibility_body: "<p>Horizon Global si impegna a garantire che le proprie piattaforme digitali e i servizi fisici siano accessibili a tutti, comprese le persone con disabilità.</p><p><strong>I nostri Sforzi:</strong><br>Aggiorniamo costantemente le interfacce software per renderle conformi agli standard Web Content Accessibility Guidelines (WCAG) 2.1 AA.</p>",
+                modal_contact_title: "Contatta il Supporto",
+                modal_contact_body: "<p><strong>Sede Centrale:</strong><br>SB GLOBAL HORIZON<br>Via Domnul Ocesti 4<br>Stanesti, Giurgiu</p><hr class='border-white/10 my-4'><p><strong>Canali di Supporto:</strong><br>Email: support@horizonglobal.com<br>Telefono: +40 (0) 31 400 0000</p>",
+                modal_ireo_title: "<i data-lucide='sun' class='text-emerald-400 w-6 h-6'></i> IREO Utilities",
+                modal_ireo_body: "<p><strong>Organizzazione per le Energie Rinnovabili</strong></p><p>IREO gestisce e distribuisce energia rinnovabile in diversi settori europei, utilizzando reti intelligenti avanzate per bilanciare il carico e ridurre gli sprechi.</p><ul class='list-disc pl-5 space-y-2 mt-2'><li>Gestione di impianti solari ed eolici su larga scala.</li><li>Implementazione di sistemi intelligenti per la purificazione dell'acqua.</li></ul>",
+                modal_aura_title: "<i data-lucide='headphones' class='text-violet-400 w-6 h-6'></i> Piattaforma Aura",
+                modal_aura_body: "<p><strong>Ecosistema Multimediale</strong></p><p>Aura è la nostra piattaforma di streaming creata per colmare il divario tra creatori e ascoltatori. Alimentata dagli algoritmi di compressione audio di Dev.Ryzn.</p><ul class='list-disc pl-5 space-y-2 mt-2'><li>Integrazione diretta con Ryzn Music Group.</li><li>Codec audio lossless disponibili su tutti gli abbonamenti.</li></ul>",
+                modal_moonlight_title: "<i data-lucide='clapperboard' class='text-amber-400 w-6 h-6'></i> MoonLight Production",
+                modal_moonlight_body: "<p><strong>Divisione Cinematografica</strong></p><p>MoonLight Production si concentra sul cinema narrativo ad alto budget. Il nostro attuale progetto principale, <em>'The Island'</em>, è un thriller investigativo basato su veri documenti desecretati.</p>",
+                modal_devryzn_title: "<i data-lucide='code-2' class='text-cyan-400 w-6 h-6'></i> Dev.Ryzn",
+                modal_devryzn_body: "<p><strong>Sviluppo Software Horizon</strong></p><p>Dev.Ryzn è il cervello dietro Horizon Global. La nostra élite del software sviluppa gli algoritmi proprietari che alimentano ogni altra divisione.</p><ul class='list-disc pl-5 space-y-2 mt-2'><li><strong>IA e Automazione:</strong> Creazione di modelli adattivi per il traffico.</li><li><strong>Cybersecurity:</strong> Implementazione di crittografia di livello militare.</li></ul>",
+                modal_netorion_title: "<i data-lucide='wifi' class='text-blue-400 w-6 h-6'></i> Net-Orion",
+                modal_netorion_body: "<p><strong>Infrastruttura di Telecomunicazioni</strong></p><p>Net-Orion gestisce migliaia di chilometri di fibra ottica ad alta velocità e cavi sottomarini transatlantici, operando con data center Tier 4 sicuri in tutta Europa.</p>"
             },
             es: {
                 nav_about: "Sobre Nosotros", nav_div: "Servicios", nav_presence: "Presencia", nav_smart: "Comunidades",
                 hero_badge: "Tecnología e Infraestructura", hero_title: "Desarrollando soluciones <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-400'>prácticas para el mañana.</span>",
-                hero_desc: "Desde energía renovable hasta telecomunicaciones y medios accesibles. Horizon Global se centra en ofrecer servicios de calidad para apoyar la vida cotidiana.",
-                about_title: "Un enfoque en el crecimiento sostenible.", about_desc1: "Horizon Global opera en los sectores de servicios, medios y tecnología. Nos centramos en un desarrollo constante y responsable.", about_desc2: "Creemos en la construcción de sistemas con un propósito práctico. Nuestro objetivo es proporcionar infraestructuras consistentes y de alta calidad.",
+                hero_desc: "Desde redes de energía renovable hasta telecomunicaciones y entretenimiento accesible. Horizon Global se enfoca en ofrecer servicios de calidad que apoyan a las comunidades.",
+                about_title: "Un enfoque en el crecimiento sostenible.", about_desc1: "Horizon Global opera en sectores de servicios públicos, medios y tecnología. Nuestro enfoque se basa en un desarrollo constante y responsable.", about_desc2: "Creemos en la construcción de sistemas con un propósito práctico para proporcionar infraestructuras de alta calidad para las necesidades diarias.",
                 about_stat1: "Enfoque en Sostenibilidad", about_stat2: "Centrado en la Comunidad",
-                origins_badge: "Nuestros Orígenes", origins_title: "Una base para resolver problemas.", origins_desc1: "Fundada por Sebastian Brotto, Horizon comenzó con el simple objetivo de mejorar la eficiencia local de datos y energía.", origins_desc2: "Hoy mantenemos ese enfoque, brindando servicios accesibles que ayudan a las comunidades a funcionar de manera sostenible.",
-                div_title: "Nuestros Servicios.", div_desc: "Un portafolio equilibrado enfocado en energía renovable, conectividad y medios accesibles.",
-                ireo_desc: "IREO se dedica a la gestión sostenible. Nos enfocamos en ofrecer electricidad renovable y mantener la infraestructura para las comunidades.",
-                aura_desc: "Aura es nuestra plataforma de música, creada para conectar artistas y oyentes de manera justa y con audio de alta calidad.",
-                net_desc: "Net-Orion proporciona las redes de telecomunicaciones. Con fibra óptica y centros de datos seguros, aseguramos una conectividad estable.",
-                dev_desc: "Dev.Ryzn es nuestro equipo de software. Construyen las aplicaciones y sistemas que impulsan nuestras plataformas con seguridad y estabilidad.",
-                moonlight_desc: "MoonLight Production apoya voces independientes produciendo narrativas reflexivas y atractivas para una audiencia amplia.",
-                movie_desc: "Un drama de investigación enfocado en contar historias rigurosas que respetan el material de origen.",
-                movie2_desc: "Un proyecto de ciencia ficción que explora la humanidad y la tecnología con técnicas de software eficientes.",
-                geo_badge: "Nuestra Red", geo_title: "Una Presencia Global en Crecimiento.", geo_desc: "Horizon Global opera divisiones importantes en Europa, con sedes activas en Alemania, Italia, Eslovenia, Bulgaria y España. También estamos expandiendo nuestras operaciones a Estados Unidos, con una nueva división en Las Vegas programada para abrir el 15 de febrero de 2027.",
-                smart_badge: "Integración Urbana", smart_title: "Apoyando Entornos Urbanos.", smart_desc: "Trabajamos para integrar tecnología útil en la ciudad, combinando software eficiente con prácticas sostenibles.",
-                smart_f1_title: "Transporte Eficiente", smart_f1_desc: "Opciones de transporte público silenciosas y limpias basadas en energía renovable.",
-                smart_f2_title: "Guías Útiles", smart_f2_desc: "Pantallas de eficiencia energética con navegación y alertas en tiempo real.",
-                smart_f3_title: "Espacios Verdes", smart_f3_desc: "Mantenimiento de parques a través de riego inteligente para optimizar el agua.",
-                smart_f4_title: "Iluminación Adaptativa", smart_f4_desc: "Iluminación que se ajusta a los peatones, conservando energía de forma segura.",
+                div_title: "Nuestros Servicios.", div_desc: "Un portafolio equilibrado enfocado en energía renovable, conectividad digital y experiencias mediáticas.",
+                ireo_desc: "IREO se dedica a la gestión sostenible de servicios públicos. Nos enfocamos en entregar electricidad renovable y mantener infraestructura confiable.",
+                aura_desc: "Aura es nuestra plataforma de música, creada para conectar artistas directamente con oyentes, proporcionando calidad de audio clara y un ecosistema justo.",
+                net_desc: "Net-Orion proporciona las redes de telecomunicaciones. Manteniendo fibra óptica y centros de datos, aseguramos una conectividad estable.",
+                dev_desc: "Dev.Ryzn es nuestro equipo central de software. Construyen aplicaciones enfocándose en seguridad, estabilidad y herramientas prácticas de IA.",
+                moonlight_desc: "MoonLight Production es nuestra división creativa. Nos enfocamos en apoyar voces independientes y producir narrativas reflexivas.",
+                movie_desc: "Un drama de investigación enfocado en descubrir verdades complejas. Nuestro equipo se dedica a una narración rigurosa.",
+                movie2_desc: "Un proyecto de ciencia ficción conceptual explorando la relación entre la humanidad y las tecnologías emergentes.",
+                geo_badge: "Nuestra Red", geo_title: "Una Presencia Global Creciente.", geo_desc: "Horizon Global opera en Europa (Alemania, Italia, Eslovenia, Bulgaria, España) y se expande a Estados Unidos, con una división en Las Vegas en 2027.",
+                smart_badge: "Integración Urbana", smart_title: "Apoyando Entornos Urbanos.", smart_desc: "Trabajamos para integrar tecnología útil en la vida de la ciudad, combinando software eficiente con prácticas sostenibles.",
+                smart_f1_title: "Tránsito Eficiente", smart_f1_desc: "Opciones de transporte público silenciosas y limpias basadas en energía renovable.",
+                smart_f2_title: "Navegación Útil", smart_f2_desc: "Pantallas de eficiencia energética con navegación y alertas en tiempo real.",
+                smart_f3_title: "Espacios Verdes", smart_f3_desc: "Mantenimiento de parques a través de riego inteligente para optimizar el uso de agua.",
+                smart_f4_title: "Iluminación Adaptativa", smart_f4_desc: "Iluminación que se ajusta a los peatones, conservando energía.",
                 faq_title: "Preguntas Frecuentes", faq_subtitle: "Más detalles sobre cómo operamos.",
-                faq_1_q: "¿Ryzn Music Group es independiente?", faq_1_a: "Opera como un equipo interno trabajando estrechamente con Aura para gestionar derechos justamente.",
-                faq_2_q: "¿Cómo colaboran Net-Orion y Dev.Ryzn?", faq_2_a: "Net-Orion maneja el hardware (fibra) y Dev.Ryzn el software para asegurar servicios fluidos.",
-                faq_3_q: "¿Dónde opera IREO?", faq_3_a: "Principalmente en Europa, expandiendo cuidadosamente la energía renovable donde ofrezca mayor beneficio práctico.",
-                footer_about: "Centrados en ofrecer tecnología confiable, soluciones de energía sostenible y medios accesibles.", footer_div: "Nuestros Servicios", footer_legal: "Información General"
+                faq_1_q: "¿Ryzn Music Group es independiente?", faq_1_a: "Opera como un equipo interno que trabaja con Aura para asegurar compensaciones justas a los artistas.",
+                faq_2_q: "¿Cómo colaboran Net-Orion y Dev.Ryzn?", faq_2_a: "Net-Orion maneja la infraestructura física. Dev.Ryzn construye las aplicaciones para operar ese hardware.",
+                faq_3_q: "¿Dónde provee servicios IREO?", faq_3_a: "Principalmente en Europa, expandiendo cuidadosamente los proyectos de energía renovable.",
+                footer_about: "Centrados en ofrecer tecnología confiable y soluciones de energía sostenible.", footer_div: "Nuestros Servicios", footer_legal: "Información General",
+                btn_privacy: "Política de Privacidad", btn_terms: "Términos de Servicio", btn_access: "Accesibilidad", btn_contact: "Contactar Soporte",
+                
+                modal_privacy_title: "Política de Privacidad (GDPR)",
+                modal_privacy_body: "<p><strong>1. Controlador de Datos</strong><br>SB GLOBAL HORIZON, Via Domnul Ocesti 4, Stanesti, Giurgiu.</p><p><strong>2. Recopilación de Datos</strong><br>Recopilamos telemetría funcional de IREO y datos analíticos de Aura para mantener la estabilidad de la red.</p><p><strong>3. Derechos (GDPR)</strong><br>Tiene derecho a acceder, corregir o solicitar la eliminación de sus datos.</p><p><strong>4. Seguridad</strong><br>La información sensible se encripta mediante protocolos AES-256.</p>",
+                modal_terms_title: "Términos de Servicio",
+                modal_terms_body: "<p><strong>1. Aceptación</strong><br>Al utilizar cualquier servicio proporcionado por Horizon Global, acepta estos términos.</p><p><strong>2. Confiabilidad</strong><br>Mantenemos un tiempo de actividad del 99.9%. No somos responsables de interrupciones externas temporales.</p><p><strong>3. Propiedad Intelectual</strong><br>El software de Dev.Ryzn y los medios de MoonLight son propiedad exclusiva de Horizon Global.</p>",
+                modal_accessibility_title: "Declaración de Accesibilidad",
+                modal_accessibility_body: "<p>Estamos comprometidos a asegurar que nuestras plataformas digitales sean accesibles para todos.</p><p><strong>Esfuerzos:</strong><br>Cumplimos con las pautas de accesibilidad de contenido web (WCAG) 2.1 AA.</p>",
+                modal_contact_title: "Soporte y Contacto",
+                modal_contact_body: "<p><strong>Sede Central:</strong><br>SB GLOBAL HORIZON<br>Via Domnul Ocesti 4<br>Stanesti, Giurgiu</p><hr class='border-white/10 my-4'><p><strong>Email:</strong> support@horizonglobal.com<br><strong>Teléfono:</strong> +40 (0) 31 400 0000</p>",
+                modal_ireo_title: "<i data-lucide='sun' class='text-emerald-400 w-6 h-6'></i> Utilidades IREO",
+                modal_ireo_body: "<p>Gestionamos y distribuimos energía renovable en varios sectores europeos, utilizando redes inteligentes para equilibrar la carga.</p>",
+                modal_aura_title: "<i data-lucide='headphones' class='text-violet-400 w-6 h-6'></i> Plataforma Aura",
+                modal_aura_body: "<p>Nuestra plataforma de streaming diseñada para cerrar la brecha entre creadores y oyentes, con compresión de audio de alta calidad sin pérdidas.</p>",
+                modal_moonlight_title: "<i data-lucide='clapperboard' class='text-amber-400 w-6 h-6'></i> MoonLight Production",
+                modal_moonlight_body: "<p>Nuestra división cinematográfica se centra en el cine narrativo de alto presupuesto, con proyectos de gran impacto visual y argumental.</p>",
+                modal_devryzn_title: "<i data-lucide='code-2' class='text-cyan-400 w-6 h-6'></i> Dev.Ryzn",
+                modal_devryzn_body: "<p>La élite de software que desarrolla algoritmos propietarios, implementando IA para ciudades inteligentes y ciberseguridad militar.</p>",
+                modal_netorion_title: "<i data-lucide='wifi' class='text-blue-400 w-6 h-6'></i> Net-Orion",
+                modal_netorion_body: "<p>Maneja miles de kilómetros de fibra óptica y centros de datos de Nivel 4 en toda Europa para asegurar operaciones con latencia cero.</p>"
             },
             de: {
                 nav_about: "Über Uns", nav_div: "Dienstleistungen", nav_presence: "Präsenz", nav_smart: "Gemeinschaften",
                 hero_badge: "Technologie & Infrastruktur", hero_title: "Entwicklung praktischer <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-400'>Lösungen für morgen.</span>",
-                hero_desc: "Von erneuerbaren Energien und Telekommunikation bis hin zu zugänglichen Medien. Horizon Global bietet hochwertige Dienstleistungen, die den Alltag unterstützen.",
-                about_title: "Fokus auf nachhaltiges Wachstum.", about_desc1: "Horizon Global ist in den Bereichen Versorgung, Medien und Technologie tätig, basierend auf stetiger, verantwortungsvoller Entwicklung.", about_desc2: "Wir glauben an den Aufbau von Systemen mit einem praktischen Zweck und dem Ziel, hochwertige Infrastruktur bereitzustellen.",
+                hero_desc: "Von erneuerbaren Energienetzen bis hin zu Telekommunikation und Software. Horizon Global bietet hochwertige Dienstleistungen, die den Alltag unterstützen.",
+                about_title: "Fokus auf nachhaltiges Wachstum.", about_desc1: "Horizon Global ist in den Bereichen Versorgung, Medien und Technologie tätig. Unser Ansatz basiert auf stetiger, verantwortungsvoller Entwicklung.", about_desc2: "Wir glauben an den Aufbau von Systemen mit praktischem Zweck, um eine konsistente, hochwertige Infrastruktur bereitzustellen.",
                 about_stat1: "Fokus auf Nachhaltigkeit", about_stat2: "Gemeinschaftsorientiert",
-                origins_badge: "Unser Ursprung", origins_title: "Eine Basis zur Problemlösung.", origins_desc1: "Gegründet von Sebastian Brotto, begann Horizon mit dem Ziel, die Effizienz von Daten und Energie vor Ort zu verbessern.", origins_desc2: "Heute behalten wir diesen Ansatz bei und bieten zugängliche Dienste, die Gemeinschaften helfen, nachhaltig zu funktionieren.",
-                div_title: "Unsere Dienstleistungen.", div_desc: "Ein ausgewogenes Portfolio, das sich auf erneuerbare Energien und Konnektivität konzentriert.",
-                ireo_desc: "IREO widmet sich der nachhaltigen Versorgung. Wir konzentrieren uns auf erneuerbaren Strom und zuverlässige Infrastruktur.",
-                aura_desc: "Aura ist unsere Musikplattform, die Künstler und Hörer fair und mit hoher Audioqualität verbindet.",
-                net_desc: "Net-Orion stellt die Netzwerke bereit. Mit Glasfaser und sicheren Rechenzentren gewährleisten wir eine stabile Verbindung.",
-                dev_desc: "Dev.Ryzn ist unser Software-Team, das die Anwendungen für unsere Plattformen mit Sicherheit und Stabilität entwickelt.",
-                moonlight_desc: "MoonLight Production unterstützt unabhängige Stimmen, indem es durchdachte Geschichten für ein breites Publikum produziert.",
-                movie_desc: "Ein investigatives Drama, das sich auf tiefgründige Erzählungen konzentriert, die das Ausgangsmaterial respektieren.",
-                movie2_desc: "Ein Sci-Fi-Projekt, das die Beziehung zwischen Mensch und Technologie durch effiziente Software erforscht.",
-                geo_badge: "Unser Netzwerk", geo_title: "Eine wachsende globale Präsenz.", geo_desc: "Horizon Global betreibt wichtige Abteilungen in ganz Europa mit aktiven Standorten in Deutschland, Italien, Slowenien, Bulgarien und Spanien. Wir erweitern unsere Aktivitäten auch auf die USA, wobei am 15. Februar 2027 eine neue Niederlassung in Las Vegas eröffnet wird.",
-                smart_badge: "Städtische Integration", smart_title: "Unterstützung des städtischen Raums.", smart_desc: "Wir integrieren hilfreiche Technologie in das Stadtleben, um saubere, zugängliche urbane Räume zu schaffen.",
-                smart_f1_title: "Effizienter Verkehr", smart_f1_desc: "Leisere, saubere Verkehrsmittel, basierend auf erneuerbarer Energie.",
+                div_title: "Unsere Dienstleistungen.", div_desc: "Ein ausgewogenes Portfolio, das sich auf erneuerbare Energien und digitale Konnektivität konzentriert.",
+                ireo_desc: "IREO widmet sich der nachhaltigen Versorgung. Wir konzentrieren uns auf erneuerbaren Strom und den Erhalt zuverlässiger Infrastruktur.",
+                aura_desc: "Aura ist unsere Musikplattform, die Künstler und Hörer direkt miteinander verbindet und ein faires Ökosystem bietet.",
+                net_desc: "Net-Orion stellt die grundlegenden Netzwerke bereit. Mit Glasfaser und Rechenzentren gewährleisten wir stabile Konnektivität.",
+                dev_desc: "Dev.Ryzn ist unser Software-Team. Sie entwickeln sichere und stabile Anwendungen für unsere digitalen Plattformen.",
+                moonlight_desc: "MoonLight Production ist unsere kreative Abteilung, die unabhängige Stimmen und durchdachte Erzählungen fördert.",
+                movie_desc: "Ein investigatives Drama, das komplexe Wahrheiten aufdeckt, mit rigoroser Erzählweise.",
+                movie2_desc: "Ein Sci-Fi-Projekt, das die Beziehung zwischen Mensch und neuen Technologien untersucht.",
+                geo_badge: "Unser Netzwerk", geo_title: "Eine wachsende globale Präsenz.", geo_desc: "Horizon Global operiert in Europa (Deutschland, Italien, Slowenien, Bulgarien, Spanien) und expandiert mit einer neuen Abteilung in Las Vegas (Februar 2027) in die USA.",
+                smart_badge: "Städtische Integration", smart_title: "Unterstützung des städtischen Raums.", smart_desc: "Wir integrieren Technologie in den städtischen Alltag, um saubere und zugängliche Räume zu schaffen.",
+                smart_f1_title: "Effizienter Verkehr", smart_f1_desc: "Leisere, saubere öffentliche Verkehrsmittel basierend auf erneuerbaren Energien.",
                 smart_f2_title: "Hilfreiche Wegweiser", smart_f2_desc: "Energieeffiziente Anzeigen mit Navigation und Echtzeit-Warnungen.",
-                smart_f3_title: "Grünflächen", smart_f3_desc: "Pflege von Parks durch intelligente Bewässerung zur Wasseroptimierung.",
-                smart_f4_title: "Adaptive Beleuchtung", smart_f4_desc: "Beleuchtung, die sich Fußgängern anpasst und Energie sicher spart.",
+                smart_f3_title: "Grünflächen", smart_f3_desc: "Pflege von städtischen Parks durch intelligente Bewässerungssysteme.",
+                smart_f4_title: "Adaptive Beleuchtung", smart_f4_desc: "Straßenbeleuchtung, die sich Fußgängern anpasst und Energie spart.",
                 faq_title: "Häufig gestellte Fragen", faq_subtitle: "Weitere Details zu unserer Arbeitsweise.",
-                faq_1_q: "Ist Ryzn Music Group eigenständig?", faq_1_a: "Es ist ein internes Team, das mit Aura zusammenarbeitet, um Rechte fair zu verwalten.",
-                faq_2_q: "Wie arbeiten Net-Orion und Dev.Ryzn zusammen?", faq_2_a: "Net-Orion verwaltet Hardware (Glasfaser), Dev.Ryzn die Software für reibungslose Dienste.",
-                faq_3_q: "Wo agiert IREO?", faq_3_a: "Hauptsächlich in Europa, mit sorgfältiger Erweiterung in Regionen für praktischen Nutzen.",
-                footer_about: "Konzentration auf zuverlässige Technologie, nachhaltige Energielösungen und zugängliche Medien.", footer_div: "Unsere Dienste", footer_legal: "Allgemeine Info"
+                faq_1_q: "Ist Ryzn Music separat?", faq_1_a: "Es ist ein internes Team, das eng mit Aura zusammenarbeitet.",
+                faq_2_q: "Wie arbeiten Net-Orion und Dev.Ryzn zusammen?", faq_2_a: "Net-Orion verwaltet die Hardware (Glasfaser), Dev.Ryzn die Software.",
+                faq_3_q: "Wo agiert IREO?", faq_3_a: "Hauptsächlich in Europa, mit sorgfältiger Expansion erneuerbarer Projekte.",
+                footer_about: "Konzentriert auf zuverlässige Technologie und nachhaltige Energielösungen.", footer_div: "Unsere Dienste", footer_legal: "Allgemeine Info",
+                btn_privacy: "Datenschutzrichtlinie", btn_terms: "Nutzungsbedingungen", btn_access: "Barrierefreiheit", btn_contact: "Support kontaktieren",
+                
+                modal_privacy_title: "Datenschutzrichtlinie (GDPR)",
+                modal_privacy_body: "<p><strong>1. Datenverantwortlicher</strong><br>SB GLOBAL HORIZON, Via Domnul Ocesti 4, Stanesti, Giurgiu.</p><p><strong>2. Datenerhebung</strong><br>Wir sammeln Telemetriedaten von IREO und Analysen von Aura zur Netzwerkstabilität.</p><p><strong>3. Rechte (GDPR)</strong><br>Sie haben das Recht auf Zugang, Berichtigung oder Löschung Ihrer Daten.</p><p><strong>4. Sicherheit</strong><br>Alle sensiblen Informationen werden verschlüsselt.</p>",
+                modal_terms_title: "Nutzungsbedingungen",
+                modal_terms_body: "<p><strong>1. Akzeptanz</strong><br>Durch die Nutzung unserer Dienste stimmen Sie diesen Bedingungen zu.</p><p><strong>2. Zuverlässigkeit</strong><br>Wir streben eine Verfügbarkeit von 99,9% an.</p><p><strong>3. Geistiges Eigentum</strong><br>Software von Dev.Ryzn und Medien von MoonLight sind exklusives Eigentum von Horizon.</p>",
+                modal_accessibility_title: "Erklärung zur Barrierefreiheit",
+                modal_accessibility_body: "<p>Wir stellen sicher, dass unsere Plattformen für alle zugänglich sind und entsprechen den WCAG 2.1 AA-Standards.</p>",
+                modal_contact_title: "Support Kontaktieren",
+                modal_contact_body: "<p><strong>Hauptsitz:</strong><br>SB GLOBAL HORIZON<br>Via Domnul Ocesti 4<br>Stanesti, Giurgiu</p><hr class='border-white/10 my-4'><p><strong>E-Mail:</strong> support@horizonglobal.com<br><strong>Telefon:</strong> +40 (0) 31 400 0000</p>",
+                modal_ireo_title: "<i data-lucide='sun' class='text-emerald-400 w-6 h-6'></i> IREO Versorgung",
+                modal_ireo_body: "<p>Wir verwalten erneuerbare Energien in Europa und nutzen intelligente Netze zum Lastausgleich.</p>",
+                modal_aura_title: "<i data-lucide='headphones' class='text-violet-400 w-6 h-6'></i> Aura Plattform",
+                modal_aura_body: "<p>Unsere Streaming-Plattform verbindet Schöpfer und Hörer mit makelloser, verlustfreier Audioqualität.</p>",
+                modal_moonlight_title: "<i data-lucide='clapperboard' class='text-amber-400 w-6 h-6'></i> MoonLight Production",
+                modal_moonlight_body: "<p>Fokus auf narrative, hochbudgetierte Filmproduktionen mit tiefgreifenden Geschichten.</p>",
+                modal_devryzn_title: "<i data-lucide='code-2' class='text-cyan-400 w-6 h-6'></i> Dev.Ryzn",
+                modal_devryzn_body: "<p>Die Entwickler unserer Algorithmen, KI-Verkehrsmodelle und militärischen Verschlüsselungen.</p>",
+                modal_netorion_title: "<i data-lucide='wifi' class='text-blue-400 w-6 h-6'></i> Net-Orion",
+                modal_netorion_body: "<p>Verwaltet Hochgeschwindigkeits-Glasfasernetze und sichere Rechenzentren in Europa.</p>"
             },
             ro: {
                 nav_about: "Despre Noi", nav_div: "Servicii", nav_presence: "Prezență", nav_smart: "Comunități",
                 hero_badge: "Tehnologie și Infrastructură", hero_title: "Dezvoltăm soluții <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-400'>practice pentru viitor.</span>",
-                hero_desc: "De la energie regenerabilă și telecomunicații la divertisment accesibil. Horizon Global oferă servicii de calitate pentru viața de zi cu zi.",
+                hero_desc: "De la rețele de energie regenerabilă la telecomunicații și divertisment accesibil. Horizon Global oferă servicii de calitate pentru viața de zi cu zi.",
                 about_title: "Un accent pe creșterea durabilă.", about_desc1: "Horizon Global operează în utilități, media și tehnologie, concentrându-se pe o dezvoltare constantă și responsabilă.", about_desc2: "Credem în construirea de sisteme practice, având ca scop furnizarea unei infrastructuri consistente și de înaltă calitate.",
                 about_stat1: "Accent pe Sustenabilitate", about_stat2: "Centrat pe Comunitate",
-                origins_badge: "Originile Noastre", origins_title: "O bază pentru rezolvarea problemelor.", origins_desc1: "Fondată de Sebastian Brotto, Horizon a început cu obiectivul de a îmbunătăți eficiența datelor și energiei locale.", origins_desc2: "Astăzi menținem această abordare, oferind servicii accesibile care ajută comunitățile să funcționeze durabil.",
                 div_title: "Serviciile Noastre.", div_desc: "Un portofoliu echilibrat, axat pe energie regenerabilă, conectivitate și media accesibilă.",
                 ireo_desc: "IREO se dedică managementului durabil. Ne concentrăm pe electricitate regenerabilă și infrastructură de încredere pentru comunități.",
                 aura_desc: "Aura este platforma noastră muzicală, care conectează artiștii cu ascultătorii într-un mod corect, cu un sunet de înaltă calitate.",
@@ -637,45 +721,84 @@
                 dev_desc: "Dev.Ryzn este echipa noastră de software care construiește aplicațiile ce gestionează platformele noastre în mod sigur.",
                 moonlight_desc: "MoonLight Production sprijină vocile independente producând narațiuni captivante pentru un public larg.",
                 movie_desc: "O dramă de investigație dedicată unei povești riguroase care respectă materialul sursă.",
-                movie2_desc: "Un proiect științifico-fantastic explorând relația dintre umanitate și tehnologie, cu randare eficientă.",
-                geo_badge: "Rețeaua Noastră", geo_title: "O Prezență Globală în Creștere.", geo_desc: "Horizon Global operează divizii majore în Europa, cu centre active în Germania, Italia, Slovenia, Bulgaria și Spania. De asemenea, ne extindem operațiunile în Statele Unite, având programată deschiderea unei noi divizii în Las Vegas pe 15 februarie 2027.",
+                movie2_desc: "Un proiect științifico-fantastic explorând relația dintre umanitate și tehnologie.",
+                geo_badge: "Rețeaua Noastră", geo_title: "O Prezență Globală în Creștere.", geo_desc: "Horizon Global operează divizii în Europa (Germania, Italia, Slovenia, Bulgaria, Spania) și ne extindem în SUA, cu o divizie în Las Vegas în 2027.",
                 smart_badge: "Integrare Urbană", smart_title: "Susținerea Mediilor Urbane.", smart_desc: "Integrăm tehnologie utilă în viața orașului, combinând software eficient cu practici durabile.",
                 smart_f1_title: "Transport Eficient", smart_f1_desc: "Transport public mai silențios și curat, bazat pe energie regenerabilă.",
                 smart_f2_title: "Navigație Utilă", smart_f2_desc: "Afișaje eficiente cu navigație și alerte în timp real pentru comunitate.",
                 smart_f3_title: "Spații Verzi", smart_f3_desc: "Întreținerea parcurilor prin irigare inteligentă ce optimizează consumul de apă.",
-                smart_f4_title: "Iluminat Adaptiv", smart_f4_desc: "Iluminat care se reglează după pietoni, economisind energie în siguranță.",
+                smart_f4_title: "Iluminat Adaptiv", smart_f4_desc: "Iluminat care se reglează după pietoni, economisind energie.",
                 faq_title: "Întrebări Frecvente", faq_subtitle: "Mai multe detalii despre cum operăm.",
-                faq_1_q: "Este Ryzn Music Group separat?", faq_1_a: "Este o echipă internă care lucrează strâns cu Aura pentru a gestiona drepturile în mod corect.",
-                faq_2_q: "Cum colaborează Net-Orion și Dev.Ryzn?", faq_2_a: "Net-Orion gestionează hardware-ul (fibra), iar Dev.Ryzn software-ul pentru servicii optime.",
-                faq_3_q: "Unde operează IREO?", faq_3_a: "În principal în Europa, extinzând cu grijă energia regenerabilă unde aduce cel mai mare beneficiu.",
-                footer_about: "Ne concentrăm pe furnizarea de tehnologii fiabile, soluții energetice durabile și media accesibile.", footer_div: "Serviciile Noastre", footer_legal: "Informații Generale"
+                faq_1_q: "Este Ryzn Music Group separat?", faq_1_a: "Este o echipă internă care lucrează strâns cu Aura.",
+                faq_2_q: "Cum colaborează Net-Orion și Dev.Ryzn?", faq_2_a: "Net-Orion gestionează hardware-ul, iar Dev.Ryzn software-ul pentru servicii optime.",
+                faq_3_q: "Unde operează IREO?", faq_3_a: "În principal în Europa, extinzând cu grijă energia regenerabilă.",
+                footer_about: "Oferind tehnologie fiabilă, energie durabilă și media accesibilă.", footer_div: "Serviciile Noastre", footer_legal: "Informații Generale",
+                btn_privacy: "Politica de Confidențialitate", btn_terms: "Termeni și Condiții", btn_access: "Accesibilitate", btn_contact: "Contact Suport",
+                
+                modal_privacy_title: "Politica de Confidențialitate (GDPR)",
+                modal_privacy_body: "<p><strong>1. Operator de Date</strong><br>SB GLOBAL HORIZON, Via Domnul Ocesti 4, Stanesti, Giurgiu.</p><p><strong>2. Colectarea Datelor</strong><br>Colectăm date strict pentru a menține stabilitatea rețelei.</p><p><strong>3. Drepturi (GDPR)</strong><br>Aveți dreptul de a accesa, corecta sau șterge datele personale.</p><p><strong>4. Securitate</strong><br>Datele sunt criptate prin protocoale AES-256 de nivel militar.</p>",
+                modal_terms_title: "Termeni și Condiții",
+                modal_terms_body: "<p><strong>1. Acceptare</strong><br>Prin utilizarea serviciilor Horizon, acceptați acești termeni.</p><p><strong>2. Fiabilitate</strong><br>Asigurăm un uptime de 99.9%.</p><p><strong>3. Proprietate Intelectuală</strong><br>Algoritmii și materialele media aparțin exclusiv Horizon Global.</p>",
+                modal_accessibility_title: "Declarație de Accesibilitate",
+                modal_accessibility_body: "<p>Platformele noastre sunt accesibile tuturor, respectând standardele WCAG 2.1 AA.</p>",
+                modal_contact_title: "Contact Suport",
+                modal_contact_body: "<p><strong>Sediul Central:</strong><br>SB GLOBAL HORIZON<br>Via Domnul Ocesti 4<br>Stanesti, Giurgiu</p><hr class='border-white/10 my-4'><p><strong>Email:</strong> support@horizonglobal.com<br><strong>Telefon:</strong> +40 (0) 31 400 0000</p>",
+                modal_ireo_title: "<i data-lucide='sun' class='text-emerald-400 w-6 h-6'></i> Utilități IREO",
+                modal_ireo_body: "<p>Gestionăm energia regenerabilă în sectoare europene, utilizând rețele inteligente pentru a reduce risipa.</p>",
+                modal_aura_title: "<i data-lucide='headphones' class='text-violet-400 w-6 h-6'></i> Platforma Aura",
+                modal_aura_body: "<p>Platforma de streaming ce conectează creatorii cu ascultătorii folosind sunet audio clar fără pierderi.</p>",
+                modal_moonlight_title: "<i data-lucide='clapperboard' class='text-amber-400 w-6 h-6'></i> MoonLight Production",
+                modal_moonlight_body: "<p>Divizia cinematografică axată pe filme narative de buget mare, cu mesaje de impact profund.</p>",
+                modal_devryzn_title: "<i data-lucide='code-2' class='text-cyan-400 w-6 h-6'></i> Dev.Ryzn",
+                modal_devryzn_body: "<p>Echipa software de elită ce dezvoltă soluții de securitate cibernetică și sisteme de inteligență artificială.</p>",
+                modal_netorion_title: "<i data-lucide='wifi' class='text-blue-400 w-6 h-6'></i> Net-Orion",
+                modal_netorion_body: "<p>Gestionează infrastructura de fibră optică de mare viteză și centre de date securizate în Europa.</p>"
             },
             ar: {
                 nav_about: "معلومات عنا", nav_div: "خدماتنا", nav_presence: "حضورنا", nav_smart: "المجتمعات",
                 hero_badge: "التكنولوجيا والبنية التحتية", hero_title: "تطوير حلول <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-400'>عملية من أجل الغد.</span>",
-                hero_desc: "من الطاقة المتجددة والاتصالات إلى الترفيه والبرمجيات، تركز الأفق العالمي على تقديم خدمات جودة تدعم الحياة اليومية.",
+                hero_desc: "من الطاقة المتجددة إلى الاتصالات والترفيه والبرمجيات، تركز الأفق العالمي على تقديم خدمات جودة تدعم الحياة اليومية.",
                 about_title: "التركيز على النمو المستدام.", about_desc1: "نعمل في قطاعات المرافق والإعلام، بناءً على التنمية المستقرة والمسؤولة.", about_desc2: "نؤمن ببناء أنظمة ذات غرض عملي، ونهدف إلى توفير بنية تحتية عالية الجودة.",
                 about_stat1: "التركيز على الاستدامة", about_stat2: "محورها المجتمع",
-                origins_badge: "خلفيتنا", origins_title: "أساس مبني على حل المشكلات.", origins_desc1: "بدأت المبادرة بهدف تحسين كفاءة البيانات والطاقة المحلية.", origins_desc2: "اليوم نحافظ على هذا النهج، ونقدم خدمات يمكن الوصول إليها تساعد المجتمعات.",
                 div_title: "خدماتنا.", div_desc: "محفظة متوازنة تركز على الطاقة المتجددة والاتصال الرقمي.",
-                ireo_desc: "نكرس جهودنا لإدارة المرافق المستدامة، والتركيز على الكهرباء المتجددة.",
-                aura_desc: "منصتنا الموسيقية تهدف إلى ربط الفنانين بالمستمعين مباشرة ببيئة عادلة.",
-                net_desc: "نوفر شبكات الاتصالات الأساسية، مع الحفاظ على الألياف البصرية الموثوقة.",
-                dev_desc: "فريق البرمجيات لدينا يبني التطبيقات التي تدير شبكاتنا بأمان واستقرار.",
-                moonlight_desc: "ندعم الأصوات المستقلة بإنتاج قصص هادفة لجمهور واسع.",
-                movie_desc: "دراما استقصائية تركز على سرد قوي يحترم المادة الأصلية.",
-                movie2_desc: "مشروع خيال علمي يستكشف العلاقة بين البشرية والتكنولوجيا.",
-                geo_badge: "شبكتنا", geo_title: "حضور عالمي متزايد.", geo_desc: "تدير أفق العالمية أقسامًا رئيسية في جميع أنحاء أوروبا، مع مراكز نشطة في ألمانيا وإيطاليا وسلوفينيا وبلغاريا وإسبانيا. كما نقوم بتوسيع عملياتنا إلى الولايات المتحدة، مع افتتاح قسم جديد في لاس فيجاس مقرر في 15 فبراير 2027.",
-                smart_badge: "التكامل الحضري", smart_title: "دعم البيئات الحضرية.", smart_desc: "نعمل على دمج التكنولوجيا المفيدة في الحياة اليومية للمدينة باستخدام ممارسات مستدامة.",
+                ireo_desc: "نكرس جهودنا لإدارة المرافق المستدامة، والتركيز على الكهرباء المتجددة والبنية التحتية.",
+                aura_desc: "منصتنا الموسيقية تهدف إلى ربط الفنانين بالمستمعين مباشرة ببيئة عادلة وصوت نقي.",
+                net_desc: "نوفر شبكات الاتصالات الأساسية، مع الحفاظ على الألياف البصرية الموثوقة ومراكز البيانات.",
+                dev_desc: "فريق البرمجيات لدينا يبني التطبيقات التي تدير شبكاتنا بأمان واستقرار عالي.",
+                moonlight_desc: "ندعم الأصوات المستقلة بإنتاج قصص هادفة ومؤثرة لجمهور واسع عبر السينما.",
+                movie_desc: "دراما استقصائية تركز على سرد قوي يحترم المادة الأصلية ويكشف الحقائق.",
+                movie2_desc: "مشروع خيال علمي يستكشف العلاقة بين البشرية والتكنولوجيا الناشئة.",
+                geo_badge: "شبكتنا", geo_title: "حضور عالمي متزايد.", geo_desc: "نعمل في أوروبا (ألمانيا، إيطاليا، سلوفينيا، بلغاريا، إسبانيا) ونتوسع في الولايات المتحدة مع فرع جديد في لاس فيغاس عام 2027.",
+                smart_badge: "التكامل الحضري", smart_title: "دعم البيئات الحضرية.", smart_desc: "ندمج التكنولوجيا المفيدة في الحياة اليومية للمدينة باستخدام ممارسات مستدامة.",
                 smart_f1_title: "عبور فعال", smart_f1_desc: "تطوير وسائل نقل عام أنظف تعتمد على الطاقة المتجددة.",
                 smart_f2_title: "شاشات مجتمعية", smart_f2_desc: "تركيب شاشات موفرة للطاقة تقدم تحديثات محلية بالوقت الفعلي.",
                 smart_f3_title: "مساحات خضراء", smart_f3_desc: "دعم صيانة الحدائق عبر أنظمة ري ذكية تحافظ على المياه.",
                 smart_f4_title: "إضاءة تكيفية", smart_f4_desc: "إضاءة شوارع تتكيف بناءً على وجود المشاة لتوفير الطاقة.",
                 faq_title: "أسئلة مكررة", faq_subtitle: "مزيد من التفاصيل حول كيفية عملنا.",
-                faq_1_q: "هل مجموعة رايزن الموسيقية كيان منفصل؟", faq_1_a: "تعمل كفريق داخلي مع منصة أورا لضمان تعويض الفنانين بشكل عادل.",
-                faq_2_q: "كيف يتعاون نيت-أوريون وديف.رايزن؟", faq_2_a: "الأول يتعامل مع الأجهزة، والثاني يبني البرامج لتشغيلها بسلاسة.",
-                faq_3_q: "أين تقدم IREO خدماتها؟", faq_3_a: "تركز بشكل أساسي في أوروبا، مع توسيع المشاريع المتجددة بعناية.",
-                footer_about: "نركز على تقديم تكنولوجيا موثوقة وحلول طاقة مستدامة ووسائط يسهل الوصول إليها.", footer_div: "خدماتنا", footer_legal: "معلومات عامة"
+                faq_1_q: "هل مجموعة رايزن الموسيقية كيان منفصل؟", faq_1_a: "تعمل كفريق داخلي مع منصة أورا لضمان حقوق الفنانين.",
+                faq_2_q: "كيف يتعاون نيت-أوريون وديف.رايزن؟", faq_2_a: "الأول يتعامل مع الأجهزة، والثاني يبني البرامج لتشغيلها.",
+                faq_3_q: "أين تقدم IREO خدماتها؟", faq_3_a: "تركز بشكل أساسي في أوروبا مع التوسع بحذر.",
+                footer_about: "نركز على تقديم تكنولوجيا موثوقة وحلول طاقة مستدامة.", footer_div: "خدماتنا", footer_legal: "معلومات عامة",
+                btn_privacy: "سياسة الخصوصية", btn_terms: "شروط الخدمة", btn_access: "إمكانية الوصول", btn_contact: "اتصل بالدعم",
+                
+                modal_privacy_title: "سياسة الخصوصية",
+                modal_privacy_body: "<p><strong>1. متحكم البيانات</strong><br>المركز الرئيسي في جيورجيو يتحكم في البيانات.</p><p><strong>2. استخدام البيانات</strong><br>نجمع بيانات للحفاظ على استقرار الشبكات.</p><p><strong>3. الحقوق</strong><br>لك الحق في الوصول إلى بياناتك وتعديلها أو حذفها.</p><p><strong>4. الأمان</strong><br>يتم تشفير جميع المعلومات باستخدام معايير صارمة.</p>",
+                modal_terms_title: "شروط الخدمة",
+                modal_terms_body: "<p><strong>1. القبول</strong><br>باستخدام خدماتنا، أنت توافق على هذه الشروط.</p><p><strong>2. الموثوقية</strong><br>نحافظ على وقت تشغيل بنسبة 99.9٪.</p><p><strong>3. الملكية الفكرية</strong><br>جميع البرامج مملوكة حصرياً لشركتنا.</p>",
+                modal_accessibility_title: "بيان إمكانية الوصول",
+                modal_accessibility_body: "<p>نحن ملتزمون بجعل منصاتنا متاحة للجميع وفقاً للمعايير العالمية.</p>",
+                modal_contact_title: "الدعم والاتصال",
+                modal_contact_body: "<p><strong>المقر الرئيسي:</strong><br>SB GLOBAL HORIZON<br>Via Domnul Ocesti 4<br>Stanesti, Giurgiu</p><hr class='border-white/10 my-4'><p><strong>البريد:</strong> support@horizonglobal.com<br><strong>الهاتف:</strong> +40 (0) 31 400 0000</p>",
+                modal_ireo_title: "<i data-lucide='sun' class='text-emerald-400 w-6 h-6'></i> مرافق IREO",
+                modal_ireo_body: "<p>إدارة وتوزيع الطاقة المتجددة في القطاعات الأوروبية لدعم التنمية المستدامة.</p>",
+                modal_aura_title: "<i data-lucide='headphones' class='text-violet-400 w-6 h-6'></i> منصة أورا",
+                modal_aura_body: "<p>منصة البث التي تربط المبدعين بالمستمعين مباشرة بصوت فائق الجودة.</p>",
+                modal_moonlight_title: "<i data-lucide='clapperboard' class='text-amber-400 w-6 h-6'></i> إنتاج ضوء القمر",
+                modal_moonlight_body: "<p>قسم الإنتاج السينمائي المكرس للقصص العميقة والمؤثرة عالمياً.</p>",
+                modal_devryzn_title: "<i data-lucide='code-2' class='text-cyan-400 w-6 h-6'></i> تطوير رايزن",
+                modal_devryzn_body: "<p>الفريق البرمجي الذي يطور الخوارزميات وأنظمة الأمن السيبراني الخاصة بنا.</p>",
+                modal_netorion_title: "<i data-lucide='wifi' class='text-blue-400 w-6 h-6'></i> نيت-أوريون",
+                modal_netorion_body: "<p>إدارة مراكز البيانات وكابلات الألياف البصرية عالية السرعة لتوفير اتصال ثابت.</p>"
             }
         };
 
@@ -686,14 +809,63 @@
             dropdownWrapper.classList.remove('dropdown-active');
 
             const dict = translations[langCode] || translations['en'];
+            const fallback = translations['en'];
             
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if(dict[key]) {
                     el.innerHTML = dict[key];
+                } else if(fallback[key]) {
+                    el.innerHTML = fallback[key];
                 }
             });
         }
+
+        // Modals Logic
+        function openModal(type) {
+            const modal = document.getElementById('global-modal');
+            const modalBox = document.getElementById('global-modal-content');
+            const titleEl = document.getElementById('modal-title');
+            const bodyEl = document.getElementById('modal-body');
+
+            const lang = document.documentElement.lang || 'en';
+            const dict = translations[lang] || translations['en'];
+            const fallback = translations['en'];
+
+            titleEl.innerHTML = dict[`modal_${type}_title`] || fallback[`modal_${type}_title`];
+            bodyEl.innerHTML = dict[`modal_${type}_body`] || fallback[`modal_${type}_body`];
+
+            lucide.createIcons();
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex'); 
+            
+            void modal.offsetWidth; 
+            
+            modal.classList.remove('opacity-0');
+            modalBox.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('global-modal');
+            const modalBox = document.getElementById('global-modal-content');
+            
+            modal.classList.add('opacity-0');
+            modalBox.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        document.getElementById('global-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
